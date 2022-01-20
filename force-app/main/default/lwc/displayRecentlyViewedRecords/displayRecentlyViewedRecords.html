@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Recent Records">
+        <div if:true={error} class="slds-notify slds-notify_alert slds-alert_error">
+            {error}
+        </div>
+        <lightning-layout horizontal-align="spread" vertical-align="center" class="slds-m-around_small">
+            <lightning-layout-item size="3">
+                <lightning-combobox
+                    options={options}
+                    value={selectedObj}
+                    label="Select an Object"
+                    placeholder="Select Object"
+                    onchange={handleChange}
+                    >
+                </lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item size="3">
+                <lightning-input type="number" label="No. of Records to Display" value={noOfRecords} min="1" max="100" onchange={handleChange}></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout horizontal-align="spread" vertical-align="center" class="slds-m-around_small slds-border_top">
+            <lightning-layout-item size="12">
+                <c-record-detail records={records} columns={columns} isloading={isloading}></c-record-detail>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
